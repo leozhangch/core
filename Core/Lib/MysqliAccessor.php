@@ -44,6 +44,9 @@ class Core_Lib_MysqliAccessor extends Core_Lib_DataAccessor {
         if ($this->conn->connect_errno != 0) {
             throw new Exception('model server connect error: '.$this->conn->connect_error);
         }
+        if(isset($conf['charset'])) {
+            $this->conn->set_charset('utf8');
+        }
     }
 
     public function find() {
